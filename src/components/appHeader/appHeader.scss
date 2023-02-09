@@ -1,0 +1,29 @@
+@import '../../style/variables.scss';
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  &__title {
+    font-weight: bold;
+    font-size: 28px;
+    line-height: 37px;
+    &_span-marvel {
+      color: $main-color;
+    }
+  }
+  &__menu {
+    &-links {
+      display: flex;
+      justify-content: space-between;
+      font-weight: bold;
+      font-size: 24px;
+      line-height: 32px;
+    }
+    &-link {
+    margin: 0 8px;
+      &:hover {
+        color: $main-color;
+      }
+    }
+  }
+}
