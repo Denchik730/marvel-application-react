@@ -1,7 +1,9 @@
 import AppHeader from "../appHeader/AppHeader";
 import RandomChar from "../randomChar/RandomChar";
 import CharList from "../charList/CharList";
+import CharInfo from "../charInfo/CharInfo";
 
+import decoration from '../../resources/img/vision.png';
 
 
 function App() {
@@ -10,9 +12,11 @@ function App() {
       <AppHeader/>
       <main>
         <RandomChar/>
-        <div className="char__content">
+        <section className="char__content">
           <CharList/>
-        </div>
+          <CharInfo/>
+        </section>
+        <img className="bg-decoration" src={decoration} alt="vision"/>
       </main>
     </div>
   );
