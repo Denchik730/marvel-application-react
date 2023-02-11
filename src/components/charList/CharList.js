@@ -44,11 +44,11 @@ class CharList extends Component {
         imgStyle = {'objectFit' : 'unset'};
       }
 
-      console.log(item)
       return (
         <li 
           className="char__item"
-          key={item.id}>
+          key={item.id}
+          onClick={() => this.props.onCharSelected(item.id)}>
           <img className="char__item-img" src={item.thumbnail} alt={`Изображение ${item.name}`} style={imgStyle}/>
           <div className="char__item-name">{item.name}</div>
         </li>
