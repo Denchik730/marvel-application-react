@@ -1,4 +1,6 @@
 import { Component } from 'react';
+import PropTypes from 'prop-types';
+
 
 import Spinner from '../spinner/Spinner';
 import ErrorMessage from '../errorMessage/ErrorMessage';
@@ -88,7 +90,6 @@ class CharList extends Component {
 
   render() {
     const {charList, loading, error, newCharLoading, offset, charEnded} = this.state;
-    console.log(offset)
     const items = this.renderItems(charList);
 
     const errorMessage = error ? <ErrorMessage/> : null;
@@ -111,6 +112,10 @@ class CharList extends Component {
     )
   }
 
+}
+
+CharList.propTypes = {
+  onCharSelected: PropTypes.func.isRequired
 }
 
 export default CharList;
