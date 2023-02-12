@@ -11,22 +11,45 @@ class CharList extends Component {
   state = {
     charList: [],
     loading: true,
-    error: false
+    error: false,
+    newCharLoading: false,
+    offset: 600,
+    charEnded: false
   }
 
   marvelService = new MarvelService();
 
   componentDidMount() {
-    this.marvelService.getAllCharacters()
-     .then(this.onCharListLoaded)
-     .catch(this.onError)
+    this.onRequest();
   }
 
-  onCharListLoaded = (charList) => {
+  //Запрос когда пользователь кликает на кнопку подгрузки
+  onRequest = (offset) => {
+    this.onNewCharListLoading();
+    this.marvelService.getAllCharacters(offset)
+      .then(this.onCharListLoaded)
+      .catch(this.onError)
+  }
+
+  onNewCharListLoading = () => {
     this.setState({
-      charList: charList, 
-      loading: false
-    });
+      newCharLoading: true
+    })
+  }
+
+  onCharListLoaded = (newCharList) => {
+    let ended = false;
+    if(newCharList.length < 9) {
+      ended = true
+    }
+
+    this.setState(({charList, offset}) => ({
+      charList: [...charList, ...newCharList], 
+      loading: false,
+      newCharLoading: false,
+      offset: offset + 9,
+      charEnded: ended
+    }));
   }
 
   onError = () => {
@@ -64,7 +87,8 @@ class CharList extends Component {
 
 
   render() {
-    const {charList, loading, error} = this.state;
+    const {charList, loading, error, newCharLoading, offset, charEnded} = this.state;
+    console.log(offset)
     const items = this.renderItems(charList);
 
     const errorMessage = error ? <ErrorMessage/> : null;
@@ -76,7 +100,11 @@ class CharList extends Component {
         {errorMessage}
         {spinner}
         {content}
-        <button className="button button__main button__long">
+        <button 
+          className="button button__main button__long"
+          disabled={newCharLoading}
+          style={{'display': charEnded ? 'none' : 'block'}}
+          onClick={() => this.onRequest(offset)}>
           <div className="inner">load more</div>
         </button>
       </div>

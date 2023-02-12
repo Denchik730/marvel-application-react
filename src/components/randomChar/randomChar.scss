@@ -15,8 +15,8 @@
     width: 180px;
     height: 180px;
     object-fit: cover;
-    &_contain {
-      object-fit: contain;
+    &_unset {
+      object-fit: unset;
     }
   }
   &__info {

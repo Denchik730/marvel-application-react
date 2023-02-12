@@ -90,7 +90,7 @@ const View = ({char}) => {
 
   let containClass = '';
   if (thumbnail === 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg') {
-    containClass = 'randomchar__info-img_contain';
+    containClass = 'randomchar__info-img_unset';
   }
 
   return (
